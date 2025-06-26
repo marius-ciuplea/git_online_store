@@ -1,3 +1,8 @@
+# Node.js
+node_modules/
+.pnp/
+.pnp.cjs
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.pyc
