@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Produse</title>
+</head>
+<body>
+    <h1>Toate Produsele Noastre</h1>
+
+    {% if products %} {# Verificăm dacă există produse în listă #}
+        <ul>
+            {% for product in products %} {# Iterăm prin fiecare produs din lista 'products' #}
+                <li>
+                    <h2>{{ product.name }}</h2> 
+                    <p>Preț: {{ product.price|floatformat:2 }} RON</p> 
+                    <p>Disponibil: {% if product.available %}Da{% else %}Nu{% endif %}</p>
+                    {# Accesează URL-ul detaliilor produsului, dacă ai definit get_absolute_url pe model #}
+                    <p><a href="{{ product.get_absolute_url }}">Vezi detalii</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Momentan nu există produse disponibile.</p>
+    {% endif %}
+</body>
+</html>

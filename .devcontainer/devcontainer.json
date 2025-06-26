@@ -1,0 +1,22 @@
+// .devcontainer/devcontainer.json
+{
+    "name": "Django Tailwind Dev Container",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "web",
+    "workspaceFolder": "/app",
+    "shutdownAction": "stopCompose",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-vscode.vscode-typescript-next",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "bradlc.vscode-tailwindcss",
+                "wayou.vscode-todo-highlight"
+            ]
+        }
+    },
+    "forwardPorts": [8000, 5432],
+    "postCreateCommand": "bash -c \"[ -f package.json ] || npm init -y && npm install && python manage.py migrate --no-input\""
+}

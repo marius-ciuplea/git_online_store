@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} | Detalii Produs</title>
+</head>
+<body>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Acasă</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'products:product_list' %}">Produse</a></li>
+            
+            {# Afișează strămoșii (categoriile părinte) #}
+            {% for ancestor in ancestors %}
+                {# Presupunem că ai o vedere pentru detalii categorii cu un slug, similar cu produsele #}
+                <li class="breadcrumb-item"><a href="{% url 'products:category_detail' slug=ancestor.slug %}">{{ ancestor.name }}</a></li>
+            {% endfor %}
+
+            {# Afișează categoria directă a produsului #}
+            <li class="breadcrumb-item"><a href="{% url 'products:category_detail' slug=product_category.slug %}">{{ product_category.name }}</a></li>
+            
+            {# Produsul curent (ultimul element din breadcrumb) #}
+            <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+        </ol>
+    </nav>
+
+    <h1>{{ product.name }}</h1>
+    <p>Preț: {{ product.price|floatformat:2 }} RON</p>
+    <p>Stoc: {{ product.stock }} bucăți</p>
+    <p>Disponibil: {% if product.available %}Da{% else %}Nu{% endif %}</p>
+    <p>Descriere: {{ product.description|linebreaksbr }}</p>
+
+    <p><a href="{% url 'products:product_list' %}">Înapoi la lista de produse</a></p>
+</body>
+</html>

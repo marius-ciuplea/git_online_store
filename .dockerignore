@@ -1,0 +1,40 @@
+# Ignore Git-related files
+.git
+.gitignore
+.gitmodules
+
+# Ignore environment variables files
+.env
+.env.*
+
+# Ignore virtual environments
+env/
+venv/
+*.pyc
+__pycache__/
+
+# Python specific build/dist directories
+build/
+dist/
+*.egg-info/
+
+# Logs and temporary files
+*.log
+*.tmp
+temp/
+
+# Editor/OS specific files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Development-specific files that are not needed in the final image
+# You might exclude these if they are only for local development and
+# not needed for the final running application within the container.
+# Consider if your start.sh or Dockerfile uses them.
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile
+# User-uploaded media files (if mounted as a volume, not part of image)
+media/

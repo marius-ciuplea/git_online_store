@@ -1,0 +1,39 @@
+{% load static %} {# Această linie este esențială pentru a putea folosi tag-ul static pentru fișierele CSS, JS etc. #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Proiectul Meu Django{% endblock %}</title>
+    {# Link către fișierul CSS generat de Tailwind #}
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    
+    {# Poți adăuga aici alte meta tag-uri, favicon-uri, sau link-uri către alte fișiere CSS specifice #}
+    {% block extra_head %}{% endblock %} {# Un bloc pentru a adăuga conținut suplimentar în <head> din template-urile copil #}
+</head>
+<body class="flex flex-col min-h-screen"> {# Folosim flexbox pentru a împinge footer-ul jos #}
+    {# Include navbar-ul din directorul 'includes' #}
+    {% include 'includes/navbar.html' %}
+
+    <main class="flex-grow"> {# Acest div va ocupa spațiul disponibil, împingând footer-ul #}
+        {% block content %}
+            {# Conținutul specific al fiecărei pagini va veni aici. #}
+            {# Acest bloc va fi suprascris de template-urile copil. #}
+        {% endblock %}
+    </main>
+
+    {# Include footer-ul din directorul 'includes' #}
+    {% include 'includes/footer.html' %}
+
+    {# Poți adăuga aici link-uri către fișiere JavaScript globale sau specifice #}
+    {% block extra_body %}{% endblock %} {# Un bloc pentru a adăuga scripturi la sfârșitul <body> din template-urile copil #}
+</body>
+</html>

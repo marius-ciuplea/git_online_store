@@ -1,0 +1,71 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django Stuff
+*.log
+*.sqlite3       # Your SQLite database (if you were using one, but still good to have)
+media/          # User-uploaded files
+
+# Environment variables
+.env            # This is CRUCIAL - keep your secrets out of Git!
+.env.local      # Common variant for local .env files
+
+# IDE specific files
+.idea/          # JetBrains PyCharm, IntelliJ IDEA
+.vscode/        # VS Code settings
+*.swp           # Vim swap files
+*~              # Emacs backup files
+.DS_Store       # macOS specific files
+Thumbs.db       # Windows specific files
+
+# Docker specific files that you might generate
+# (Though often .dockerignore covers this for the build context)
+# docker-compose.override.yml # If you use a local override that shouldn't be committed
+# *.bak # Backup files

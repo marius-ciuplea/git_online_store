@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine # Folosim o imagine PostgreSQL oficială, versiunea 16
+    volumes:
+      - pgdata:/var/lib/postgresql/data/ # Datele bazei de date vor persista aici
+
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    healthcheck: # Definirea unui healthcheck pentru serviciul PostgreSQL
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  web:
+    build: .
+    # Acum containerul web va rula scriptul start.sh la pornire,
+    # care va gestiona serverul Django
+    command: /app/start.sh
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+
+    depends_on:
+      db:
+        condition: service_healthy # Web va aștepta ca DB să fie declarat 'healthy'
+
+
+# Acesta este **singurul bloc 'volumes'** la nivelul rădăcinii fișierului
+# și trebuie să fie la același nivel de indentare cu 'services:'.
+volumes:
+  pgdata:
